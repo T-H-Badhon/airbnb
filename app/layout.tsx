@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import ClientHydration from "./components/ClientHydration";
-// import Modal from "./components/modals/Modal";
+import Modal from "./components/modals/Modal";
 // import {Nunito} from "next/font/google"
 
 const geistSans = localFont({
@@ -36,8 +36,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <Modal ></Modal> */}
         <ClientHydration>
+        <Modal actionLabel="Submit"  open={true} title="Heelo World" ></Modal>
           <Navbar />
         </ClientHydration>
         <Navbar />

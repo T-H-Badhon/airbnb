@@ -9,7 +9,7 @@ type RegistrationStore = {
 const useRegistration = create<RegistrationStore>((set) => ({
     open: false,
     onOpen:()=> set({open:true}),
-    onClose:()=> set({open:true}),
+    onClose:()=> set({open:false}),
 
 }))
 export default useRegistration;

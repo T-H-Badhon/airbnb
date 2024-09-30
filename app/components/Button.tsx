@@ -11,9 +11,9 @@ type ButtonProps = {
     small?:boolean;
     icon?:IconType
 }
-const Button = ({label,onCLick,disabled,outline,small,icon:Icon}:any) => {
+const Button = ({label,onClick,disabled,outline,small,icon:Icon}:any) => {
     return (
-        <button onClick={onCLick} disabled={disabled} className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
+        <button onClick={onClick} disabled={disabled} className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
             ${outline?'bg-white' : 'bg-rose-600'} 
             ${outline?'border-black' : 'bg-rose-600'} 
             ${outline?'text-black' : 'text-white'} 

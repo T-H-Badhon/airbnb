@@ -9,6 +9,11 @@ import useRegistration from "@/app/hooks/useRegistration";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./Modal";
 import Heading from "../Heading";
+import AInput from "../AInput";
+import toast from "react-hot-toast";
+
+
+
 const RegistrationModal = () => {
     const registrationModal = useRegistration()
     // const [email, setEmail] = useState("");
@@ -26,17 +31,8 @@ const RegistrationModal = () => {
     })
 
     const onSubmit:SubmitHandler<FieldValues> = (data) => {
-        setLoading(true);
-        axios.post('/api/register',data)
-        .then(()=> {
-            registrationModal.onClose();
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-        .finally(() => {
-            setLoading(false);
-        })
+        console.log(data)
+        
     }
     const bodyInformation = (
         <div className="flex flex-col gap-4 ">
@@ -44,14 +40,19 @@ const RegistrationModal = () => {
             title="Welcome to AirBnb"
             subTitle="Create An Account"
             />
+            <AInput id="name" label="name" disabled={loading} register={register} errors={errors} required />
+            <AInput id="email" label="email" disabled={loading} register={register} errors={errors} required />
+            <AInput id="password" type="password" label="password" disabled={loading} register={register} errors={errors} required />
         </div>
     )
     return (
-        <Modal disabled={loading} open={registrationModal.open} title="Register" actionLabel="Continue"
+        <Modal  disabled={loading} open={registrationModal.open} title="Register" actionLabel="Continue"
         onClose={registrationModal.onClose}
         onSubmit={handleSubmit(onSubmit)}
         body={bodyInformation}
+        
          />
+        
     );
 };
 

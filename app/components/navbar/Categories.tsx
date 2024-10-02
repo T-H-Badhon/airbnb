@@ -1,9 +1,16 @@
 import { TbBeach } from "react-icons/tb";
 import Container from "../Container";
-import { GiWindmill } from "react-icons/gi";
+import { GiBroom, GiWindmill } from "react-icons/gi";
 import { MdOutlineVilla } from "react-icons/md";
+import CategoryBox from "../CategoryBox";
+import { useParams, usePathname } from "next/navigation";
 
 export const categories = [
+  {
+    label: "room",
+    icon: GiBroom,
+    description: "This property is close to the beach",
+  },
   {
     label: "Beach",
     icon: TbBeach,
@@ -17,19 +24,32 @@ export const categories = [
   {
     label: "Modern",
     icon: MdOutlineVilla,
+    description: "This property is close to Modern",
   }
 ];
 
 const Categories = () => {
+    const params = useParams();
+    const category = params?.category
+    // console.log(category)
+    const pathName = usePathname();
+
+    const isMainPage = pathName === '/';
+
+    if(!isMainPage){
+        return null;
+    }
   return (
     <Container>
       <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
-        {categories.map(category => (
+        {categories.map(item => (
             <CategoryBox
-                key={category.label}
-                label={category.label}
-                icon={category.icon}
-                description={category.description}
+                key={item.label}
+                label={item.label}
+                icon={item.icon}
+                selected={category === item.label}
+                description={item.description}
+               
             />
         ))}
       </div>

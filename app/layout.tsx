@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import ClientHydration from "./components/ClientHydration";
 import RegistrationModal from "./components/modals/RegistrationModal";
 import ToastProvider from "./provider/ToastProvider";
-import HomePage from '../app/components/Home/HomePage'
+// import HomePage from '../app/components/Home/HomePage'
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -36,14 +36,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <ClientHydration>
+        <ClientHydration>
           <ToastProvider />
           <RegistrationModal></RegistrationModal>
           <Navbar />
           {/* <HomePage /> */}
-        {/* </ClientHydration> */}
-        {/* <Navbar /> */} 
+        </ClientHydration> 
+        {/* <Navbar />   */}
+        <div className="pb-24 pt-28" >
         {children}
+        </div>
       </body>
     </html>
   );

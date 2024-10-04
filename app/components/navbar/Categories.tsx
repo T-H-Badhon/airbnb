@@ -30,7 +30,7 @@ export const categories = [
 
 const Categories = () => {
     const params = useParams();
-    const category = params?.category
+    const name = params?.name
     // console.log(category)
     const pathName = usePathname();
 
@@ -41,13 +41,13 @@ const Categories = () => {
     }
   return (
     <Container>
-      <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
+      <div className="pt-4  flex flex-row items-center justify-between overflow-x-auto">
         {categories.map(item => (
             <CategoryBox
                 key={item.label}
                 label={item.label}
                 icon={item.icon}
-                selected={category === item.label}
+                selected={name === item.label}
                 description={item.description}
                
             />

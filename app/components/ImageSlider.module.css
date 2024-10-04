@@ -1,0 +1,42 @@
+/* components/ImageSlider.module.css */
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Adjust width as needed */
+    margin: auto;
+  }
+  
+  .imageContainer {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  
+  .arrow {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .arrow:first-of-type {
+    left: 10px;
+  }
+  
+  .arrow:last-of-type {
+    right: 10px;
+  }
+  

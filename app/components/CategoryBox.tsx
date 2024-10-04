@@ -23,7 +23,7 @@ const CategoryBox = ({label,icon:Icon,description,selected}:TCategoryBox) => {
 
         const updatedQuery:any ={
             ...clientQuery,
-            category:label
+            name:label
         }
         if(params?.get('category')=== label){
             delete updatedQuery.category

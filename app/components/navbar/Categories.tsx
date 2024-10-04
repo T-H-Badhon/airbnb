@@ -17,6 +17,11 @@ export const categories = [
     description: "This property is close to the beach",
   },
   {
+    label: "countryside",
+    icon: TbBeach,
+    description: "This property is close to the beach",
+  },
+  {
     label:'WindMills',
     icon:GiWindmill,
     description: "This property is close to windmills",

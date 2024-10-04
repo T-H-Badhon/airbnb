@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import ClientHydration from "./components/ClientHydration";
 import RegistrationModal from "./components/modals/RegistrationModal";
 import ToastProvider from "./provider/ToastProvider";
+import SearchModal from "./components/modals/SearchModal";
 // import HomePage from '../app/components/Home/HomePage'
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,9 +41,7 @@ export default function RootLayout({
           <ToastProvider />
           <RegistrationModal></RegistrationModal>
           <Navbar />
-          {/* <HomePage /> */}
         </ClientHydration> 
-        {/* <Navbar />   */}
         <div className="pb-24 pt-28" >
         {children}
         </div>

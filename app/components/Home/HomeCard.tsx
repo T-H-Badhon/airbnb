@@ -40,6 +40,9 @@ const HomeCard = ({ listing }: { listing: any }) => {
         <div className="font-semibold text-lg">
           ${price} per night
         </div>
+        <div className="font-semibold text-lg">
+          {type}
+        </div>
       </div>
     </div>
   );

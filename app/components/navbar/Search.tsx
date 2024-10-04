@@ -41,7 +41,7 @@ const Search = () => {
             <Calendar className="border-none" onChange={onChange1} value={value1} />
           </div>
           <div>
-            <Calendar className="border-none" onChange={onChange1} value={value1} />
+            <Calendar className="border-none" onChange={onChange2} value={value2} />
           </div>
         </div>
         <div className=" w-fit pt-5 float-end space-x-2">

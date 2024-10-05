@@ -19,8 +19,10 @@ const Search = () => {
 
   const onDateSubmit = () => {
     
-    const startDate = formatter(value1 as Date).split("T")[0];
-    const endDate = formatter(value2 as Date).split("T")[0];
+    const startDate = formatter(value1 as Date)
+    const endDate = formatter(value2 as Date)
+
+    console.log(startDate,endDate)
 
     setShow(false);
     router.push(`/?startDate=${startDate}&endDate=${endDate}`);
@@ -88,7 +90,14 @@ const Search = () => {
 };
 
 const formatter = (date: Date) => {
-  return date.toISOString(); // Use the Date object directly
+  const timezoneOffset = 6 * 60; // 6 hours in minutes
+
+  // Adjust the time to the Bangladesh time zone by adding the offset
+  const bdTime = new Date(date.getTime() + timezoneOffset * 60 * 1000);
+
+  // Format the date into ISO format (but without the UTC "Z")
+  const isoString = bdTime.toISOString().replace('Z', '');
+  return isoString.slice(0,10); // Use the Date object directly
 };
 
 export default Search;

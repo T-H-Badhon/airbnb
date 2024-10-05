@@ -4,6 +4,8 @@ import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { useRouter } from "next/navigation";
+
 
 type ValuePiece = Date | null;
 
@@ -11,8 +13,18 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Search = () => {
   const [show, setShow] = useState(false);
+  const router = useRouter();
   const [value1, onChange1] = useState<Value>(new Date());
   const [value2, onChange2] = useState<Value>(new Date());
+
+  const onDateSubmit = () => {
+    
+    const startDate = formatter(value1 as Date).split("T")[0];
+    const endDate = formatter(value2 as Date).split("T")[0];
+
+    setShow(false);
+    router.push(`/?startDate=${startDate}&endDate=${endDate}`);
+  };
 
   return (
     <div className="border -[1px] w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md transition cursor-pointer relative">
@@ -34,37 +46,49 @@ const Search = () => {
         </div>
       </div>
       <div
-        className={`shadow-lg bg-white rounded-3xl absolute -left-44 top-20 p-5  ${show ? "block" : "hidden"}`}
+        className={`shadow-lg bg-white rounded-3xl absolute -left-44 top-20 p-5 ${
+          show ? "block" : "hidden"
+        }`}
       >
         <div className="flex items-start space-x-5">
           <div>
-            <Calendar className="border-none" onChange={onChange1} value={value1} />
+            <Calendar
+              className="border-none"
+              onChange={onChange1}
+              value={value1}
+            />
           </div>
           <div>
-            <Calendar className="border-none" onChange={onChange2} value={value2} />
+            <Calendar
+              className="border-none"
+              onChange={onChange2}
+              value={value2}
+            />
           </div>
         </div>
         <div className=" w-fit pt-5 float-end space-x-2">
-        <button
-        className="bg-red-500 py-2 px-5 rounded-2xl"
-          onClick={() => {
-            setShow(false);
-          }}
-        >
-          close
-        </button>
-        <button
-         className="bg-red-500 py-2 px-5  rounded-2xl"
-          onClick={() => {
-            setShow(false);
-          }}
-        >
-          submit
-        </button>
+          <button
+            className="bg-red-500 py-2 px-5 rounded-2xl"
+            onClick={() => {
+              setShow(false);
+            }}
+          >
+            close
+          </button>
+          <button
+            className="bg-red-500 py-2 px-5  rounded-2xl"
+            onClick={onDateSubmit}
+          >
+            submit
+          </button>
         </div>
       </div>
     </div>
   );
+};
+
+const formatter = (date: Date) => {
+  return date.toISOString(); // Use the Date object directly
 };
 
 export default Search;

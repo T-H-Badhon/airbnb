@@ -122,11 +122,13 @@ interface Listing {
   updatedAt?: Date;
 }
 
-export default function Home() {
+export default function Home({searchParams}:{searchParams:any}) {
+  console.log(searchParams)
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const params = useSearchParams(); 
   console.log('params',params)
+  console.log(listings)
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -134,10 +136,12 @@ export default function Home() {
 
       try {
         // Get the category from the query parameters (type=room or type=windmill, etc.)
-        const type = params?.get("type");
-
+        const type = params?.get("type") || ""
+        const startDate = params?.get("startDate") || ""
+        const endDate = params?.get("endDate")|| ""
+        console.log(type,startDate,endDate)
         // Update the fetch URL based on the selected category
-        const url = type
+        const url =startDate && endDate? `http://localhost:5000/api/v1/listing?type=${type}&availableStart=${startDate}&availableEnd=${endDate}`: type
           ? `http://localhost:5000/api/v1/listing?type=${type}`
           : "http://localhost:5000/api/v1/listing";
 
@@ -145,6 +149,7 @@ export default function Home() {
         const data = await res.json();
 
         // Set listings data from API response
+        console.log(data.data)
         setListings(data.data);
       } catch (error) {
         console.error("Error fetching listings:", error);
@@ -166,7 +171,7 @@ export default function Home() {
       <Container>
         <div>
           <div className="grid grid-cols-4 gap-x-8">
-            {listings.map((listing) => (
+            {listings?.map((listing) => (
               <HomeCard key={listing.id} listing={listing} />
             ))}
           </div>
